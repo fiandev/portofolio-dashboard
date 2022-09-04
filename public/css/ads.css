@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@300&family=Edu+TAS+Beginner&display=swap');
+:root {
+  --fontMobile: .8rem;
+  --fontDesktop: 1rem;
+  --fontLargeDesktop: 1.2rem;
+  --slow: 1.2s;
+  --fast: .6s;
+  --mainTheme: #00ccff;
+}
+* {
+  /*box-sizing: border-box;*/
+}
+
+.ads {
+  width: 100%;
+  background-color: var(--mainTheme);
+  font-family: 'Anek Tamil', sans-serif;
+  position: relative;
+  top: 0;
+  z-index: 1;
+}
+
+.ads-banner {
+  min-height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.ads-mini-banner {
+  min-height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.ads-rectangle-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.ads:before {
+  content: '';
+}
+.ads .close-btn {
+  position: absolute;
+  top: .4rem;
+  right: .4rem;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fontMobile);
+}
