@@ -53,6 +53,8 @@ Sebuah program untuk menyimpan data portofolio serta kotak masuk yang di perluka
 /api/links/:username?apikey=<YOUR APIKEY>
 ```
 
+<hr>
+
 #### how to use method POST
 - Fill URL
 
@@ -60,15 +62,46 @@ Sebuah program untuk menyimpan data portofolio serta kotak masuk yang di perluka
 ```json
 {
   "field required 1": "some value",
-  "field required 2": "some value",
+  "field required 2": "some value"
 }
 ```
 
 ##### example POST a Inbox use API
+
+- fill URL
+```shell
+/api/inbox/:username?apikey=<YOUR APIKEY>
+```
+- set content or body as JSON
 ```json
 {
   "message": "hello world!",
-  "sender": "Fiandev",
+  "sender": "Fiandev"
+}
+```
+- Send using method POST request
+
+##### response success
+
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+      "message": "hello world!",
+      "sender": "Fiandev"
+  }
 }
 ```
 
+##### response error
+```json
+{
+  "code": 200,
+  "status": "failed",
+  "message": "data request is invalid",
+  "error": {
+      "some field": ["error message!"]
+  }
+}
+```
