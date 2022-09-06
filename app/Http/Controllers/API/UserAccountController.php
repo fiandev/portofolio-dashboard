@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Apikey;
 use Illuminate\Http\Request;
 use App\Helpers\ApiResponse;
 
@@ -14,8 +15,21 @@ class UserAccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   private function apikeySelf ($request, $user) {
+    /* check apikey self */
+    $apikey = Apikey::where("key", $request->apikey)
+    ->where("user_id", $user->id)
+    ->first();
+    
+    return $apikey ? true : false;
+  }
+    
     public function index(Request $request, User $user)
     { 
+      if (!$this->apikeySelf($request, $user)) {
+        return ApiResponse::setData(403, "this apikey is invalid with this profile!");
+      }
+      
       $user->photo = $user->photo ? url($user->photo) : null;
       return ApiResponse::setData(200, "success", $user);
     }

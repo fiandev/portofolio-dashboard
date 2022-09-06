@@ -17,7 +17,9 @@ class Link extends Model
     public function user() {
       return $this->belongsTo(User::class, "user_id");
     }
-    
+    public function types() {
+      return $this->hasMany(LinkType::class);
+    }
     public function getRouteKeyName(){
       return "uid";
     }

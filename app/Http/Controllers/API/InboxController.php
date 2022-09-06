@@ -17,16 +17,21 @@ class InboxController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function apikeySelf ($request) {
+    private function apikeySelf ($request, $user) {
       /* check apikey self */
-      $apikey = Apikey::where("key", $request->apikey)->first();
-      if (!$apikey) {
-        return ApiResponse::setData(403, "this apikey is invalid with this profile!");
-      }
+      $apikey = Apikey::where("key", $request->apikey)
+      ->where("user_id", $user->id)
+      ->first();
+      
+      return $apikey ? true : false;
     }
+    
     public function index(User $user, Request $request)
     {
-      $this->apikeySelf($request);
+      if (!$this->apikeySelf($request, $user)) {
+        return ApiResponse::setData(403, "this apikey is invalid with this profile!");
+      } 
+      
       return ApiResponse::setData(200, "success", $user->inboxes);
     }
 
@@ -48,7 +53,9 @@ class InboxController extends Controller
      */
     public function store(User $user, Request $request)
     {
-        $this->apikeySelf($request);
+        if (!$this->apikeySelf($request, $user)) {
+          return ApiResponse::setData(403, "this apikey is invalid with this profile!");
+        } 
         
         $rules = [
           "sender" => "required|min:3|max:255",

@@ -36,6 +36,9 @@
         </div>
         
         <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <small class="d-block text-center text-capitalize my-3">
+          <p>not registered ? <a href="{{ route('register') }}">register now!</a></p>
+        </small>
       </form>
     </main>
   </div>
