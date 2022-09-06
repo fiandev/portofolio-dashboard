@@ -12,7 +12,7 @@ class LinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $types = ["github", "facebook", "linkedin"];
+    private $types = ["github", "facebook", "linkedin", "twitter", "instagram", "tiktok"];
     
     public function index()
     {  

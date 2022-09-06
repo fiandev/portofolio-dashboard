@@ -9,7 +9,11 @@ class Inbox extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
-    
+    protected $hidden = [
+      "id",
+      "user_id",
+    ];
+      
     public function author () {
       return $this->belongsTo(User::class, "user_id");
     }

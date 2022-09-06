@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Apikey;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,6 +21,10 @@ class DatabaseSeeder extends Seeder
           "email" => "fiandev1234@gmail.com",
           "password" => bcrypt("fianskuy_13"),
           "email_verified_at" => now()
+        ]);
+      Apikey::create([
+          "user_id" => 1,
+          "key" => "test"
         ]);
     }
 }

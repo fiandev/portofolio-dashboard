@@ -54,8 +54,8 @@
       @enderror
     </div>
     <div class="form-floating mb-3">
-      <textarea type="about" name="about" class="form-control @error('about') is-invalid @enderror" id="floatingInput" placeholder="Example@example.com">{{ auth()->user()->about }}</textarea>
-      <label for="floatingInput">about</label>
+      <textarea type="about" name="about" class="form-control @error('about') is-invalid @enderror" id="about" placeholder="Example@example.com">{{ auth()->user()->about }}</textarea>
+      <label for="about">about</label>
       @error("about")
       <div class="invalid-feedback">
         {{ $message }}

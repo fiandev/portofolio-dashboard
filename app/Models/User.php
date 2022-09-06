@@ -12,11 +12,15 @@ class User extends Authenticatable
 {
     use HasFactory;
     protected $guarded = ["id"];
+    protected $table = "users";
+    
     protected $with = ["skills", "links"];
     
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+        'id'
     ];
 
     /**
@@ -38,5 +42,13 @@ class User extends Authenticatable
     
     public function links() {
       return $this->hasMany(Link::class);
+    }
+    
+    public function apikeys() {
+      return $this->hasMany(Apikey::class);
+    }
+    
+    public function getRouteKeyName(){
+      return "username";
     }
 }

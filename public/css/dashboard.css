@@ -177,3 +177,25 @@ a {
     height: 12rem;
   }
 }
+
+
+.steps {
+  counter-reset: listCounter;
+  overflow-x: scroll;
+}
+.steps .step {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
+.steps .step::before {
+  counter-increment: listCounter;
+  content: counter(listCounter) ". ";
+}
+.step.form-group label {
+  max-width: 20%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

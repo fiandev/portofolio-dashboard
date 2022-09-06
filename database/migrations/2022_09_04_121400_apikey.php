@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('skills', function (Blueprint $table) {
+        Schema::create('apikeys', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id");
-            $table->text('name');
-            $table->text('uid');
-            $table->integer('percentage')->length(3);
-            $table->text('level');
-            $table->text('description')->nullable();
+            $table->text('key');
+            $table->bigInteger('used')->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skills');
+        Schema::dropIfExists('apikeys');
     }
 };

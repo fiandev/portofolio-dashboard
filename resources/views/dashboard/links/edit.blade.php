@@ -9,7 +9,7 @@
 
 @section("container")
   <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1>edit skill</h1>
+    <h1>edit link</h1>
   </div>
   <div class="col-md-10">
     <form class="mb-3" action="{{ url('/links/'. $link->uid) }}" method="post" enctype="multipart/form-data">
@@ -19,10 +19,10 @@
         <label for="type" class="form-label">name</label>
         <select name="type" class="form-control @error('type') is-invalid @enderror" id="type">
           @foreach($types as $type)
-            @if(in_array($link->type, $types))
-              <option value="{{ $type }}">{{ $type }}</option>
-            @else
+            @if($link->type === $type)
               <option selected value="{{ old('type', $link->type) }}">{{ old('type', $link->type) }}</option>
+            @else
+              <option value="{{ $type }}">{{ $type }}</option>
             @endif
           @endforeach
         </select>
@@ -56,6 +56,9 @@
       <button type="submit" class="btn btn-primary">
         update
       </button>
+      <a href="{{ url()->previous() }}" class="btn btn-info">
+        back
+      </a>
     </form>
   </div>
 @endsection

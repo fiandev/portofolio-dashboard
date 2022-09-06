@@ -62,6 +62,9 @@
       <button type="submit" class="btn btn-primary">
         update
       </button>
+      <a href="{{ url()->previous() }}" class="btn btn-info">
+        back
+      </a>
     </form>
   </div>
 @endsection

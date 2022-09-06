@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardSkillController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\ApikeyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::middleware(["auth"])->group( function (){
     return redirect("/dashboard");
   });
   Route::post('/logout', [LoginController::class, "logout"]);
-  Route::get('/dashboard', [DashboardController::class, "index"]);
+  Route::get('/dashboard', [DashboardController::class, "index"])->name("dashboard");
   
   /* skills */
   Route::resource('/skills', DashboardSkillController::class);
@@ -40,7 +41,8 @@ Route::middleware(["auth"])->group( function (){
   /* links */
   Route::resource('/links', LinkController::class);
   
-
+  /* apikey */
+  Route::resource('/apikey', ApikeyController::class);
   Route::get("/user/account", [UserAccountController::class, "show"])->name("user.account");
   Route::get("/user/account/edit", [UserAccountController::class, "edit"])->name("user.account.edit");
   

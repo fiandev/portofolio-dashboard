@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId("user_id");
             $table->text('sender');
             $table->text('message');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

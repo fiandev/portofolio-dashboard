@@ -5,23 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class Apikey extends Model
 {
     use HasFactory;
+    protected $table = "apikeys";
     protected $guarded = ["id"];
+    protected $with = [];
     
-    protected $hidden = [
-        'id',
-        'user_id',
-        'uid',
-    ];
-    
-    public function user() {
+    public function author () {
       return $this->belongsTo(User::class, "user_id");
-    }
-    
-    
-    public function getRouteKeyName(){
-      return "uid";
     }
 }

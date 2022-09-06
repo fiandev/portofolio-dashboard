@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\InboxController;
+use App\Http\Controllers\API\UserAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(["apikey"])->group(function (){
+  Route::get("/profile/{user}", [UserAccountController::class, "index"])->name("api.profile");
+  /* contact inbox */
+  Route::get("/inbox/{user}", [InboxController::class, "index"]);
+  Route::post("/inbox/{user}", [InboxController::class, "store"]);
+  
 });

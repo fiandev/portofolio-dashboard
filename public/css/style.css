@@ -55,6 +55,18 @@ ul, li {
   border-left: solid 1px #000;
   animation: loader var(--fast) linear infinite;
 }
+.SayHi {
+  display: inline-block;
+  animation: SayHi .5s linear infinite;
+}
+@keyframes SayHi {
+  50% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(60deg);
+  }
+}
 @keyframes loader {
   25% {
     border: solid 1px #fff;
