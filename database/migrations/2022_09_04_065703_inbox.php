@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('inboxes', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uid')->default(DB::raw('(UUID())'));
             $table->foreignId("user_id");
             $table->text('sender');
             $table->text('message');
+            $table->boolean('hasRead')->default(false);
             $table->timestamps();
         });
     }

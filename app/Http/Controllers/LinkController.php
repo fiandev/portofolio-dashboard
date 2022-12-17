@@ -44,7 +44,7 @@ class LinkController extends Controller
     {
         $validate = $request->validate([
             "type" => "required",
-            "url" => "required",
+            "url" => "required"
           ]);
           
         /* check type url */
@@ -97,7 +97,7 @@ class LinkController extends Controller
     {
       $rules = [];
       if ($request->type === $link->type && $request->uid === $link->uid && $request->url === $link->url ) {
-        return redirect("/skills")->with("info", "nothing updated, link with uid". $link->uid ." has up to date!");
+        return back()->with("info", "nothing updated, link with uid". $link->uid ." has up to date!");
       }
       if ($request->type != $link->type) {
         /* check type url */
@@ -107,7 +107,7 @@ class LinkController extends Controller
         $rules["type"] = "required|min:3|max:255";
       }
       if ($request->uid != $link->uid) {
-        $rules["uid"] = "required|min:3|max:255|unique:skills";
+        $rules["uid"] = "required|min:3|max:255|unique:links";
       }
       if ($request->url != $link->url) {
         $rules["url"] = "required|min:3|max:255";

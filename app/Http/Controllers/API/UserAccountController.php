@@ -26,6 +26,8 @@ class UserAccountController extends Controller
     
     public function index(Request $request, User $user)
     { 
+      $user->formatted_about = $user->about;
+      $user->about = strip_tags($user->about);
       if (!$this->apikeySelf($request, $user)) {
         return ApiResponse::setData(403, "this apikey is invalid with this profile!");
       }

@@ -6,19 +6,11 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardSkillController;
 use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\UserChangePasswordController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ApikeyController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\ApikeyLogController;
+use App\Http\Controllers\InboxController;
 
 Route::middleware(["guest"])->group( function (){
   Route::get('/', function (Request $request){
@@ -26,13 +18,20 @@ Route::middleware(["guest"])->group( function (){
   });
   Route::get('/login', [LoginController::class, "index"])->name("login");
   Route::post('/login', [LoginController::class, "authenticate"]);
+  
   /* register */
   Route::get('/register', [RegisterController::class, "index"])->name("register");
-  Route::post('/register', [RegisterController::class, "store"]);
+  Route::post('/register', [RegisterController::class, "register"]);
   
 });
 
 Route::middleware(["auth"])->group( function (){
+  Route::get('/register/confirm', [RegisterController::class, "confirm"])->name("register.confirm");
+  Route::get('/register/verify/{otp}', [RegisterController::class, "autoVerify"]);
+  Route::post('/register/confirm', [RegisterController::class, "verify"]);
+});
+
+Route::middleware(["auth", "userVerified"])->group( function (){
   Route::get('/', function (Request $request){
     return redirect("/dashboard");
   });
@@ -47,11 +46,26 @@ Route::middleware(["auth"])->group( function (){
   
   /* apikey */
   Route::resource('/apikey', ApikeyController::class);
+  
+  /* inbox */
+  Route::get("/inbox", [InboxController::class, "index"])->name("user.inbox");
+  Route::post("/inbox", [InboxController::class, "markAll"]);
+  Route::delete("/inbox", [InboxController::class, "deleteAll"]);
+  Route::delete("/inbox/{inbox}", [InboxController::class, "destroy"]);
+  Route::get("/inbox/{inbox}", [InboxController::class, "show"]);
+  
+  /* apikey log */
+  Route::get("/apikey-log/{apikey}", [ApikeyLogController::class, "index"]);
+  Route::delete("/apikey-log/{apikey}", [ApikeyLogController::class, "destroy"]);
+  
   Route::get("/user/account", [UserAccountController::class, "show"])->name("user.account");
   Route::get("/user/account/edit", [UserAccountController::class, "edit"])->name("user.account.edit");
-  
   Route::post("/user/account", [UserAccountController::class, "update"]);
   Route::delete("/user/account", [UserAccountController::class, "destroy"]);
+  
+  Route::get("/user/account/change-password", [UserChangePasswordController::class, "index"])->name("user.changePassword");
+  Route::post("/user/account/change-password", [UserChangePasswordController::class, "update"]);
+  
 });
 
 Route::get('/post-images/{filename}', function($filename){

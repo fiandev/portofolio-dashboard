@@ -74,8 +74,9 @@
         })
       }
    </script>
+   
    <script src='//cdn.jsdelivr.net/npm/eruda'></script>
-  <script>eruda.init();</script>
+   <script>eruda.init();</script>
    <!-- custom script -->
    @yield("script")
   </body>

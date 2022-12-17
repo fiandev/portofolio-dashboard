@@ -1,5 +1,13 @@
 @extends("dashboard.layout.main")
 
+@section("head")
+<style>
+  #about {
+    min-height: 20vh;
+    max-height: 50vh;
+  }
+</style>
+@endsection
 @section("container")
 <div class="pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">profile</h1>
@@ -53,9 +61,9 @@
       </div>
       @enderror
     </div>
-    <div class="form-floating mb-3">
-      <textarea type="about" name="about" class="form-control @error('about') is-invalid @enderror" id="about" placeholder="Example@example.com">{{ auth()->user()->about }}</textarea>
+    <div class="mb-3">
       <label for="about">about</label>
+      @livewire('trix', ["name" => "about", "value" => old('content', auth()->user()->about)])
       @error("about")
       <div class="invalid-feedback">
         {{ $message }}
@@ -75,6 +83,8 @@
     <a class="btn btn-info" href="{{ route('user.account') }}">back</a>
   </form>
   
+  <hr>
+  
   <form id="form-deleteAccount" class="p-2" action="{{ route('user.account') }}" method="post" accept-charset="utf-8">
     @csrf
     @method("delete")
@@ -83,6 +93,13 @@
     </h2>
     <button id="btn-deleteAccount" type="button" class="btn btn-danger">delete account</button>
   </form>
+  
+  <hr>
+  
+  <h2 class="text-capitalize">
+    change password
+  </h2>
+  <a type="button" href="{{ route('user.changePassword') }}" class="btn btn-success">change password</a>
 </div>
 @endsection
 

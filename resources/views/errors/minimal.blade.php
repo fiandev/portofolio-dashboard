@@ -1,4 +1,4 @@
-@extends("layouts.main")
+@extends("layout.main")
 
 @section("head")
 <title>@yield("code") | @yield("message")</title>

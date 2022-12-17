@@ -105,7 +105,7 @@ class DashboardSkillController extends Controller
     {
       $rules = [];
       if ($request->name === $skill->name && $request->uid === $skill->uid && $request->description === $skill->description && $request->percentage === $skill->percentage ) {
-        return redirect("/skills")->with("info", "nothing updated, skill named ". $skill->name ." has up to date!");
+        return back()->with("info", "nothing updated, skill named ". $skill->name ." has up to date!");
       }
       if ($request->name != $skill->name) {
         $rules["name"] = "required|min:3|max:255";

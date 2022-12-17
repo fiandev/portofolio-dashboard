@@ -31,7 +31,8 @@ ul, li {
   --slow: 1.2s;
   --fast: .6s;
   --mainTheme: #00ccff;
-  --mainThemeAlpha: #00ccff90;
+  --mainThemeAlpha: rgba(0, 204, 255, .50);
+  --mainThemeAlphaHover: rgba(0, 204, 255, .80);
   --light: #fff;
 }
 

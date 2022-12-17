@@ -3,29 +3,26 @@ namespace App\Helpers;
 
 use App\Models\Apikey;
 class ApikeyGenerator {
-  private static function randomString ($len = 7){
-    if ($len > 100) {
+  private static function randomString ($length){
+    if ($length > 100) {
       throw new Exception('to long request length of apikey!');
     }
     $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-    $result = "";
-    for ($i = 0; $i < $len; $i++) {
-       $result .= $chars[rand(0, strlen($chars))];
-    }
+    
+    $result = substr(str_shuffle(str_repeat($chars, ceil($length / strlen($chars)) )), 1, $length);
     
     /* check if exist */
     if (Apikey::where("key", $result)->first()) {
-      self::randomString($len);
+      return self::randomString($length);
     }
     
     return $result;
   }
-  private static function generate ($len = 7){
-    $key = self::randomString($len);
-    return $key;
+  private static function generate ($length){
+    return self::randomString($length);
   }
   
-  public static function generateApikey ($len = 7){
-    return self::generate($len);
+  public static function generateApikey ($length = 7){
+    return self::generate($length);
   }
 }

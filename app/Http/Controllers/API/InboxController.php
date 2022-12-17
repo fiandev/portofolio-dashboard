@@ -9,6 +9,8 @@ use App\Models\Apikey;
 use Illuminate\Http\Request;
 use App\Helpers\ApiResponse;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\InboxReceived;
+use Illuminate\Support\Facades\Mail;
 
 class InboxController extends Controller
 {
@@ -73,9 +75,11 @@ class InboxController extends Controller
           "sender" => $request->sender
         ]);
         
+        Mail::to($user->email)->send(new InboxReceived($newInbox));
+        
         return ApiResponse::setData(200, "success", [
           "message" => $newInbox->message,
-          "sender" => $newInbox->sender,
+          "sender" => $newInbox->sender
         ]);
     }
 

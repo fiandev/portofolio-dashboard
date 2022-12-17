@@ -10,7 +10,7 @@
    </form>
 </div>
   @if($apikeys->count() >= 1)
-    <div class="col-md-8 col-lg-9">
+    <div class="col-12">
       <div class="table-responsive">
       @if(session("success"))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -47,16 +47,23 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $key->key }}</td>
-                <td>{{ $key->used }}</td>
+                <td class="text-center">
+                  <a href="{{ url('apikey-log/'. $key->key) }}">
+                    {{ $key->used }}
+                  </a>
+                </td>
                 <td>{{ $key->created_at }}</td>
                 <td>
                   <form action="{{ url('/apikey/'.$key->key) }}" method="post" accept-charset="utf-8">
                     @method("delete")
                     @csrf
-                    <button type="submit" class="badge bg-danger border-0" onclick="return confirm('are you sure ?, apikey {{ $key->key }} will be delete!')">
+                    <button type="submit" class="btn bg-danger border-0" onclick="return confirm('are you sure ?, apikey {{ $key->key }} will be delete!')">
                       <i data-feather="x-circle"></i>
                     </button>
                   </form>
+                  <a class="btn bg-info border-0" href="{{ url('apikey-log/'. $key->key) }}">
+                    <i class="fa fa-history"></i>
+                  </a>
                 </td>
               </tr>
             @endforeach

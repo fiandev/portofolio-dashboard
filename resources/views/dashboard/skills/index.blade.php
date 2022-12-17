@@ -16,11 +16,11 @@
      </label>
      <input type="range" value="1" min="0" max="100" class="form-range" name="percentage" id="percentage">
      <textarea placeholder="skill description" name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
-     <button class="btn btn-primary d-flex justify-content-center align-items-center" type="submit">add</button>
+     <button class="btn btn-primary w-auto" type="submit">add</button>
    </form>
 </div>
   @if($skills->count() >= 1)
-    <div class="col-md-8 col-lg-9">
+    <div class="col-12">
       <div class="table-responsive">
       @if(session("success"))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

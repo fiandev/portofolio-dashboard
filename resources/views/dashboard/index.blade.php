@@ -17,7 +17,13 @@
     hi, {{ auth()->user()->name }} <span class="SayHi">👋</span>
   </h1>
 </div>
-<div class="d-flex gap-2 col-md-6 col-lg-5 flex-column">
+<div class="d-flex gap-2 col-12 flex-column">
+  @if(session("welcome"))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session("welcome") }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
   <div class="step-section">
     <h1 class="fs-4">how to use</h1>
     <ul class="steps">

@@ -17,6 +17,12 @@
     <h1>edit skill</h1>
   </div>
   <div class="col-md-10">
+      @if(session("info"))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          {{ session("info") }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
     <form class="mb-3" action="{{ url('/skills/'. $skill->uid) }}" method="post" enctype="multipart/form-data">
       @method("put")
       @csrf

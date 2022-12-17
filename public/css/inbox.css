@@ -1,0 +1,35 @@
+.inbox {
+  width: 100%;
+  transition: .8s;
+  padding: .4rem;
+  position: relative;
+}
+.inbox.new::before {
+  /* border-left: solid .5px var(--mainThemeAlpha); */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background-color: red;
+  transition: .4s;
+}
+.inbox:hover {
+  padding: .2rem;
+  background-color: var(--mainThemeAlphaHover);
+  border-radius: 5px;
+  color: var(--light);
+}
+.inbox.new:hover:before {
+  opacity: 0;
+}
+.inbox .btn:hover {
+  color: rgba(0, 0, 0, .6) !important;
+}
+.inbox-content {
+  width: 100%;
+  min-height: 40vh;
+  border-bottom: solid .2px;
+}

@@ -34,6 +34,12 @@
           apikey
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is("inbox*") ? "active" : ""}}" aria-current="page" href="{{ route('user.inbox') }}">
+          <span class="fa fa-envelope"></span>
+          inbox
+        </a>
+      </li>
        <li class="nav-item">
         <form class="nav-link" action="{{ url('/logout/') }}" method="post" accept-charset="utf-8">
           @csrf

@@ -32,7 +32,7 @@
    </form>
 </div>
   @if($links->count() >= 1)
-    <div class="col-md-8 col-lg-9">
+    <div class="col-12">
       <div class="table-responsive">
       @if(session("success"))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -87,7 +87,7 @@
                   <form action="{{ url('/skills/'.$link->uid) }}" method="post" accept-charset="utf-8">
                     @method("delete")
                     @csrf
-                    <button type="submit" class="badge bg-danger border-0" onclick="return confirm('are you sure ?, skill {{ $link->name }} will be delete!')">
+                    <button type="submit" class="badge bg-danger border-0" onclick="return confirm('are you sure ?, link {{ $link->uid }} will be delete!')">
                       <i data-feather="x-circle"></i>
                     </button>
                   </form>

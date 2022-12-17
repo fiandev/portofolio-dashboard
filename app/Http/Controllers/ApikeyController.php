@@ -92,6 +92,8 @@ class ApikeyController extends Controller
      */
     public function destroy(Apikey $apikey)
     {
-        //
+        Apikey::destroy($apikey->id);
+        
+        return back()->with("success", "an apikey has been delete!");
     }
 }
