@@ -1,16 +1,17 @@
-# Portofolio Dashboard
-Sebuah program untuk menyimpan data portofolio serta kotak masuk yang di perlukan dalam sebuah web portofolio
+# API Portfolio
+A program for storing portfolio data and inboxes needed in a web portfolio
 
 ### made with
-- PHP >= 7.3
-- PHP laravel ^8
+- HTML 5
+- CSS native
 - javascript
 - jQuery
-- SweetAlert 2
 - Bootstrap 5
-- CSS native
+- SweetAlert 2
+- PHP >= 7.3
+- PHP laravel v8.x.xx
 
-### feature
+### features
 - Manual input data from Dashboard
 - Input data using API
 - Get data using API
@@ -56,7 +57,8 @@ Sebuah program untuk menyimpan data portofolio serta kotak masuk yang di perluka
 <hr>
 
 #### how to use method POST
-- Fill URL
+
+1. Fill URL
 
 ##### Send JSON file with format :
 ```json
@@ -68,18 +70,18 @@ Sebuah program untuk menyimpan data portofolio serta kotak masuk yang di perluka
 
 ##### example POST a Inbox use API
 
-- fill URL
+1. fill URL
 ```shell
 /api/inbox/:username?apikey=<YOUR APIKEY>
 ```
-- set content or body as JSON
+2. set content or body as JSON
 ```json
 {
   "message": "hello world!",
   "sender": "Fiandev"
 }
 ```
-- Send using method POST request
+3. Send using method POST request
 
 ##### response success
 
@@ -105,3 +107,5 @@ Sebuah program untuk menyimpan data portofolio serta kotak masuk yang di perluka
   }
 }
 ```
+
+> made with ❤️ by fiandev
